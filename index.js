@@ -59,6 +59,8 @@ function addGamesToPage(games) {
 
         gamesContainer.appendChild(gameCard);
     }
+
+    addCardClickHandlers();
        
 }
 
@@ -221,3 +223,28 @@ firstGameContainer.appendChild(topGameElement);
 const secondGameElement = document.createElement("p");
 secondGameElement.textContent = secondGame.name;
 secondGameContainer.appendChild(secondGameElement);
+
+const modal = document.getElementById('gameModal');
+const modalBody = document.getElementById('modal-body');
+const closeButton = document.querySelector('.close-button');
+
+
+closeButton.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+
+window.addEventListener('click', (e) => {
+  if (e.target == modal) {
+    modal.style.display = 'none';
+  }
+});
+
+function addCardClickHandlers() {
+  document.querySelectorAll('.game-card').forEach(card => {
+    card.addEventListener('click', () => {
+      modalBody.innerHTML = card.innerHTML;
+      modal.style.display = 'block';
+    });
+  });
+}
